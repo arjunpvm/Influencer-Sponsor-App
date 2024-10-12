@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Edit advertisement
+{% endblock %}
+
+{% block content %}
+  <h1 class="display-1">Edit Advertisement</h1>
+
+  <form action="" method="post" class="form">
+    <div class="form-group">
+        <label for="name" class="form-label">Advertisement name</label>
+        <input type="text" name="name" id="name" value="{{ad.name}}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="name" class="form-label">niche</label>
+        <input type="text" name="niche" id="niche" value="{{ad.niche}}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="budget" class="form-label">budget</label>
+        <input type="number" name="budget" id="budget" value="{{ad.budget}}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="nature" class="form-label">Nature</label>
+        <input type="text" name="nature" id="nature" value="{{ad.nature}} " class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" name="description" id="description" value="{{ad.description}} " class="form-control" required>
+  </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark">Edit advertisement</button>
+    </div>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Sponsor's profile
+{% endblock %}
+
+{% block content %}
+  
+  <div class="heading">
+    <h1 class="display-1">Your profile</h1>
+    <a href="{{url_for('spon_logout')}}" class="btn btn-outline-danger">Logout</a>
+  </div>
+
+  <form action="" method="post" class="form">
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" id="username" value="{{sponsor.username}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="cpassword" class="form-label">Current password</label>
+        <input type="password" name="cpassword" id="cpassword" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">New password</label>
+        <input type="password" name="password" id="password" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="company_name" class="form-label">Company name</label>
+        <input type="text" name="company_name" id="company_name" value="{{sponsor.company_name}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">email</label>
+        <input type="email" name="email" id="email" value="{{sponsor.email}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="industry" class="form-label">email</label>
+        <input type="text" name="industry" id="industry" value="{{sponsor.industry}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="submit" value="update"   class="btn btn-dark">
+      </div>
+  </form>
+
+{% endblock %}
+
+{% block style  %}
+  <style>
+    .heading{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+{% endblock %}

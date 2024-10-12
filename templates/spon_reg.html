@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Sponsor Register
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="display-1">Sponsor Register</h1>
+
+    <form action="" class="form" method="post">
+        <div class="form-group">
+            <label for="company_name" class="form-label">Company Name</label>
+            <input type="text" name="company_name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password" class="form-label">Confirm password</label>
+            <input type="password" name="confirm_password" class="form-control" required> 
+        </div>
+        <div class="form-group">
+            <label for="industry" class="form-label">Industry</label>
+            <input type="text" name="industry" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Register</button>
+        </div>
+    </form>
+
+{% endblock %}

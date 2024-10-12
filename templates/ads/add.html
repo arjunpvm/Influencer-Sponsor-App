@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Add advertisement
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-1">Add Advertisement</h1>
+
+    <form action="" method="post" class="form">
+        <div class="form group">
+            <label for="campaign_id" class="form-label">Campaign</label>
+            <select name="campaign_id " id="campaign_id" class="form-control" required>
+                {% for camp in campaigns %}
+                {% if sponsor.username == camp.sponsor_username %}
+                {% if camp.id == campaign_id %}
+                <option selected value="{{camp.id}}">{{camp.name}} </option>
+                {% else %}
+                <option value="{{camp.id}}">{{camp.name}} </option>
+                {% endif %}                  
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name" class="form-label">Advertisement name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="niche" class="form-label">Niche</label>
+            <select name="niche" id="niche" class="form-control" required>
+                <option value="technology">Technology</option>
+                <option value="education">Education</option>
+                <option value="food">Food</option>
+                <option value="cosmetics">Cosmetics</option>
+                <option value="fitness">Fitness</option>
+                <option value="sports">Sports</option>
+                <option value="finance">Finance</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="others">others</option>
+            </select>
+          </div>
+        <div class="form-group">
+            <label for="budget" class="form-label">budget</label>
+            <input type="number" name="budget" id="budget" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="nature" class="form-label">Nature</label>
+            <select name="nature" id="nature" class="form-control" required>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" name="description" id="description" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Add advertisement</button>
+        </div>
+    </form>
+{% endblock %}

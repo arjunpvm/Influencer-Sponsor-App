@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  request influencer
+{% endblock %}
+
+{% block content %}
+  <h1 class="display-1">{{ad.name}}</h1>
+  <table class="table table-bordered" style="border: 1px solid black">
+    <thead>
+      <tr>
+        <th>Ad name</th>
+        <th>Ad sponsor</th>
+        <th>Ad nature</th>
+        <th>Ad niche</th>
+        <th>Ad budget</th>
+        <th>Ad description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ad.name}}</td>
+        <td>{{ad.sponsor_username}}</td>
+        <td>{{ad.nature}}</td>
+        <td>{{ad.niche}}</td>
+        <td>{{ad.budget}}</td>
+        <td>{{ad.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <p>Do you want to request {{influencer.username}} for this advertisement</p>
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Request influencer</button>
+        </div>
+    </form>
+{% endblock %}

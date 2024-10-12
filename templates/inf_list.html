@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    inf_list
+{% endblock %}
+
+{% block content %}
+    <h1>Influencers for this advertisement</h1>
+
+  <table class="table table-bordered" style="  border: 1px solid black">
+    <h2 class="display-2">Influencers</h2>
+      <thead>
+        <tr>
+          <th>Influencer name</th>
+          <th>Followers</th>
+          <th>niche</th> 
+          <th>Followers</th> 
+        </tr>
+      </thead>
+      <tbody>
+        {% for influencer in influencers %}
+        {% if influencer.niche == ad.niche %}          
+            <tr>
+              <td>{{influencer.name}}</td>
+              <td>{{influencer.followers}}</td>
+              <td>{{influencer.niche}}</td>
+              <td>
+                <a href="{{url_for('ad_request', ad_id=ad.id, id=influencer.id)}}" class="btn btn-dark">Request</a>
+              </td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

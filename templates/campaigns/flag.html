@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Flag campaign
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-1">Flag campaign</h1>
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <label for="reason" class="form-label">Reason</label>
+            <input type="text" name="reason" id="reason" class="form-control" required>
+        </div>
+    <p>Are you sure you want to flag this campaign</p>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Flag campaign</button>
+        </div>
+    </form>
+{% endblock %}

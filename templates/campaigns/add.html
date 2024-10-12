@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Add campaigns
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-1">Add campaign</h1>
+
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <label for="name" class="form-label">Campaign name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Add campaign</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Admin Dashboard    
+{% endblock %}
+
+{% block content %}
+  <div class="heading">
+    <h1 class="display-1">{{influencer.username}}'s Dashboard</h1>
+    <a href="{{url_for('admin_logout')}}" class="btn btn-outline-danger">Logout</a>    
+  </div>
+  <h1>Campaigns</h1>
+    <table class="table table-bordered" style="border: 1px solid black">
+      <thead>
+        <tr>
+          <th>Campaign id</th>
+          <th>Campaign name</th>
+          <th>Sponsor name</th>
+          <th>no of ads</th>
+
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for campaign in campaigns %}
+        {% if not campaign.flag %}          
+        <tr>
+          <td>{{campaign.id}}</td>
+          <td>{{campaign.name}}</td>
+          <td>{{campaign.sponsor_username}}</td>
+          <td>{{campaign.ads | length }}</td>
+          <td>
+            <a href="{{url_for('admin_view', id=campaign.id)}}" class="btn btn-dark">View</a>
+            <a href="{{url_for('camp_flag', id=campaign.id)}}" class="btn btn-danger">Flag</a>
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+          <div class="stats">
+            <h5>Total no of Sponsors: {{sponsor | length}}</h5>
+            <h5>Total no of Influencers: {{(influencers | length) - 1}}</h5>
+            <h5>Total no of Campaigns: {{campaigns | length}}</h5>
+            <h5>Influencers per sponsor: {{ ((influencers | length) -1 )/ sponsor | length}}</h5>
+            <h5>Total no of Advertisements: {{ads | length}}</h5>
+            <h5>Ads per campaign:
+                {% if (campaigns | length) == 0 %}
+                  None
+                {% else %}
+                  {{ (ads | length) / campaigns | length}}                  
+                {% endif %}
+              </h5>
+
+
+          </div>
+
+        <h1>Flagged Campaigns</h1>
+        <table class="table table-bordered" style="border: 1px solid black">
+          <thead>
+            <tr>
+              <th>Campaign id</th>
+              <th>Campaign name</th>
+              <th>Sponsor name</th>
+              <th>no of ads</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for campaign in campaigns %}
+            {% if campaign.flag %}          
+            <tr>
+              <td>{{campaign.id}}</td>
+              <td>{{campaign.name}}</td>
+              <td>{{campaign.sponsor_username}}</td>
+              <td>{{campaign.ads | length }}</td>
+              <td>
+                <a href="{{url_for('admin_view', id=campaign.id)}}" class="btn btn-dark">View</a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+
+{% endblock %}
+
+{% block style  %}
+  <style>
+    .heading{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+{% endblock %}

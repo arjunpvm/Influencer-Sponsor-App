@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Influencer's profile
+{% endblock %}
+
+{% block content %}
+  <div class="heading">
+    <h1 class="display-1">Welcome {{influencer.name}}</h1>
+    <a href="{{url_for('inf_logout')}}" class="btn btn-outline-danger">Logout</a>
+  </div>
+
+  <form action="" method="post" class="form">
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" 
+        name="username" 
+        id="username"
+        value="{{influencer.username}}"
+        class="form-control" 
+        required>
+      </div>
+      <div class="form-group">
+        <label for="cpassword" class="form-label">Current password</label>
+        <input type="password" name="cpassword" id="cpassword"  class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">New password</label>
+        <input type="password" name="password" id="password"  class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" 
+        name="name"
+        id="name"
+        value="{{influencer.name}}" 
+        class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" name="email" id="email" value="{{influencer.email}}" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="niche" class="form-label">Niche</label>
+        <select name="niche" id="niche" value="{{influencer.niche}}"  class="form-control" required>
+            <option value="technology">Technology</option>
+            <option value="education">Education</option>
+            <option value="food">Food</option>
+            <option value="cosmetics">Cosmetics</option>
+            <option value="fitness">Fitness</option>
+            <option value="sports">Sports</option>
+            <option value="finance">Finance</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="others">others</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="followers" class="form-label">Followers</label>
+        <input type="text" 
+        name="followers"
+        id="followers" 
+        value="{{influencer.followers}}"
+        class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="submit" value="update"   class="btn btn-dark">
+      </div>
+  </form>
+{% endblock %}
+
+{% block style  %}
+  <style>
+    .heading{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+{% endblock %}

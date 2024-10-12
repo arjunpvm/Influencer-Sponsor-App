@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  View campaign
+{% endblock %}
+
+{% block content %}
+  <h1 class="display-1">{{campaign.name}}</h1>
+  <a href="{{url_for('ad_add', campaign_id = campaign.id)}}" class="btn btn-dark">Add Advertisement</a>
+  <h2 class="display-2">Advertisements</h2>
+    <table class="table table-bordered" style="border: 1px solid black">
+    <thead>
+      <tr>
+        <th>Ad</th>
+        <th>budget</th>
+        <th>influencer</th>
+        <th>niche</th>
+        <th>Nature</th>
+        <th>Status</th> 
+        <th>Payment</th> 
+      </tr>
+    </thead>
+    <tbody>
+      {% for ad in campaign.ads %}
+          <tr>
+            <td>{{ad.name}}</td>
+            <td>{{ad.budget}}</td>
+            <td>{{ad.influencer_username}}</td>
+            <td>{{ad.niche}}</td>
+            <td>{{ad.nature}}</td>
+            <td>
+              {% if ad.request and not ad.accepted %}
+                Requested  
+              {% elif ad.accepted and not ad.completed %}
+                Accepted
+              {% elif ad.completed %}
+                Completed
+              {% endif %}
+            </td>
+            <td>{% if ad.paid %} 
+              done
+            {% elif ad.completed and not ad.paid %}
+              pending <a href="{{url_for('ad_payment', id=ad.id, camp_id = campaign.id)}}" class="btn btn-success">Pay</a>
+            {% endif %}
+            </td>
+            <td>
+              <a href="{{url_for('ad_spon_view', id=ad.id, camp_id = campaign.id)}}" class="btn btn-dark">View</a>
+
+              <a href="{{url_for('ad_edit', id=ad.id, camp_id = campaign.id)}}" class="btn btn-info">edit</a>
+
+              {% if not ad.influencer_username %}
+                <a href="{{url_for('ad_delete', id=ad.id, camp_id = campaign.id)}}" class="btn btn-danger">Delete</a>                
+              {% endif %}
+            </td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

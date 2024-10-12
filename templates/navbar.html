@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" >MAD I project</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          {% if 'influencer_id' in session%}
+            {% if influencer.is_admin %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('admin_dash')}}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('admin_prof')}}">Profile</a>
+            </li>
+            
+            {% elif 'influencer_id' in session and not influencer.is_admin %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('inf_dash')}}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('inf_prof')}}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('inf_find')}}">Find</a>
+            </li>
+            {% endif %}
+
+          {% elif 'sponsor_id' in session %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('spon_dash')}}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('spon_prof')}}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('spon_find')}}">Find</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('inf_login')}}">Login as Influencer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('spon_login')}}">Login as Sponsor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('inf_reg')}}">Register as a Influencer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('spon_reg')}}">Register as a Sponsor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('admin_login')}}">Login as admin</a>
+          </li>
+          {% endif %}          
+        </ul>
+      </div>
+    </div>
+  </nav>

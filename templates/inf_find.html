@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Find ads
+{% endblock %}
+
+{% block content %}
+  <div class="heading">
+    <h1 class="display-1">Find ads</h1>
+    <a href="{{url_for('inf_logout')}}" class="btn btn-outline-danger">Logout</a>
+  </div>
+  
+  <h1>Ads for you</h1>
+  <table class="table table-bordered" style="border: 1px solid black">
+    <thead>
+      <tr>
+        <th>Ad name</th>
+        <th>Sponsor</th>
+        <th>Campaign</th>
+        <th>Budget</th>
+        <th>niche</th> 
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for campaign in campaigns %}
+      {% if not campaign.flag %}    
+      {% for ad in campaign.ads %}
+      {% if not ad.accepted and ad.nature == 'public' %}
+                <tr>
+                  <td>{{ad.name}}</td>
+                  <td>{{ad.sponsor_username}}</td>
+                  <td>{{campaign.name}}</td>
+                  <td>{{ad.budget}}</td>
+                  <td>{{ad.niche}}</td>
+                  <td>{{ad.description}}</td>
+
+                  <td>
+                    <a href="{{url_for('ad_view', id=ad.id, camp_id = campaign.id)}}" class="btn btn-dark">View</a>
+                    <a href="{{url_for('ad_accept', id=ad.id, camp_id = campaign.id)}}" class="btn btn-success">Accept</a>
+                  </td>
+                </tr>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+
+
+    </tbody>
+    </table>
+
+
+
+{% endblock %}
+
+{% block style  %}
+  <style>
+    .heading{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Influencer Register
+{% endblock %}
+
+{% block content %}
+  
+  <h1 class="display-1">Influencer Register</h1>
+
+  <form action="" class="form" method="post">
+    <div class="form-group">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="username" class="form-label">username</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="confirm_password" class="form-label">Confirm Password</label>
+      <input type="password" name="confirm_password" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="niche" class="form-label">Niche</label>
+      <select name="niche" id="niche" class="form-control" required>
+          <option value="technology">Technology</option>
+          <option value="education">Education</option>
+          <option value="food">Food</option>
+          <option value="cosmetics">Cosmetics</option>
+          <option value="fitness">Fitness</option>
+          <option value="sports">Sports</option>
+          <option value="finance">Finance</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="others">others</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="followers" class="form-label">Followers</label>
+      <input type="text" name="followers" class="form-control">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark">Register</button>
+    </div>
+  </form>
+
+  {% endblock %}

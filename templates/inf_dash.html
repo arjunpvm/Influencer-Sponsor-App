@@ -1,0 +1,140 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Influencer Dashboard
+{% endblock %}
+
+{% block content %}
+  <div class="heading">
+    <h1 class="display-1">{{influencer.name}}'s Dashboard</h1>
+    <a href="{{url_for('inf_logout')}}" class="btn btn-outline-danger">Logout</a>
+  </div>
+ 
+  <table class="table table-bordered" style="  border: 1px solid black">
+    <h1>Your advertisements</h1>
+    <thead>
+      <tr>
+        <th>Ad name</th>
+        <th>Sponsor</th>
+        <th>campaign</th>
+        <th>Budget</th>
+        <th>niche</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for campaign in campaigns %}
+      {% if not campaign.flag %}
+      {% for ad in campaign.ads %}
+      {% if ad.influencer_username == influencer.username and ad.accepted and not ad.completed %}
+        <tr>
+          <td>{{ad.name}}</td>
+          <td>{{ad.sponsor_username}}</td>
+          <td>{{campaign.name}}</td>
+          <td>{{ad.budget}}</td>      
+          <td>{{ad.niche}}</td>
+          <td>
+            <a href="{{url_for('ad_view', id=ad.id, camp_id = campaign.id)}}" class="btn btn-dark">View</a>
+            <a href="{{url_for('ad_complete', id=ad.id, camp_id = campaign.id)}}" class="btn btn-danger">Complete</a>
+          </td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+    
+
+
+
+  <table class="table table-bordered" style="  border: 1px solid black">
+  <h1>Ad requests</h1>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>Sponsor</th>
+        <th>Budget</th>
+        <th>niche</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for campaign in campaigns %}    
+      {% if not campaign.flag %}
+      {% for ad in campaign.ads %}
+      {% if ad.influencer_username == influencer.username and ad.request and not ad.accepted %}
+        <tr>
+          <td>{{ad.name}}</td>
+          <td>{{ad.sponsor_username}}</td>
+          <td>{{ad.budget}}</td>      
+          <td>{{ad.niche}}</td>
+          <td>{{ad.description}}</td>
+          <td>
+            <a href="{{url_for('ad_view', id=ad.id, camp_id = campaign.id)}}" class="btn btn-dark">View</a>
+            <a href="{{url_for('ad_accept', id=ad.id, camp_id = campaign.id)}}" class="btn btn-success">Accept</a>
+            <a href="{{url_for('ad_reject', id=ad.id, camp_id = campaign.id)}}" class="btn btn-danger">reject</a>
+          </td>
+        </tr>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+    </tbody>
+    </table>
+     
+
+
+  <table class="table table-bordered" style="border: 1px solid black">
+    <h1>Completed ads</h1>
+
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>Ad name</th>
+        <th>Sponsor</th>
+        <th>Budget</th>
+        <th>Niche</th> 
+        <th>Description</th>
+        <th>Payment</th> 
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for campaign in campaigns %}    
+    {% for ad in campaign.ads %}
+    {% if ad.influencer_username == influencer.username and ad.completed %}
+      <tr>
+        <td>{{campaign.name}}</td>
+        <td>{{ad.name}}</td>
+        <td>{{ad.sponsor_username}}</td>
+        <td>{{ad.budget}}</td>      
+        <td>{{ad.niche}}</td>
+        <td>{{ad.description}}</td>
+        <td>{% if ad.paid %} 
+              done
+            {% else %}
+              pending
+            {% endif %}
+        </td>
+        <td>
+          <a href="{{url_for('ad_view', id=ad.id, camp_id = campaign.id)}}" class="btn btn-dark">View</a>
+        </td>
+      </tr>    
+    {% endif %}
+      {% endfor %}
+      {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+{% block style  %}
+  <style>
+    .heading{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+{% endblock %}

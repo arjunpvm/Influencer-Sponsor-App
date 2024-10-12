@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Find influencers
+{% endblock %}
+
+{% block content %}
+  <div class="heading">
+    <h1 class="display-1">Find influencers</h1>
+    <a href="{{url_for('spon_logout')}}" class="btn btn-outline-danger">Logout</a>
+  </div>
+
+  <table class="table table-bordered" style="  border: 1px solid black">
+    <h1>Advertisements</h1>
+      <thead>
+        <tr>
+          <th>Advertisement</th>
+          <th>Campaign</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for campaign in campaigns %}
+        {% if campaign.sponsor_username == sponsor.username and not campaign.flag%}
+        {% for ad in campaign.ads %}
+        {% if ad.nature == 'private' and not ad.request%}          
+            <tr>
+              <td>{{ad.name}}</td>
+              <td>{{campaign.name}}</td>
+              <td>
+                {% if ad.request and not ad.accepted %}
+                  Requested  
+                {% elif ad.accepted and not ad.completed %}
+                  Accepted
+                {% elif ad.completed %}
+                  Completed
+                {% else %}
+                  Not requested any influencers
+                {% endif %}
+              </td>
+              <td>
+                <a href="{{url_for('inf_list', id=ad.id)}}" class="btn btn-dark">Find influencers</a>
+              </td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}
+{% block style  %}
+  <style>
+    .heading{
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+{% endblock %}

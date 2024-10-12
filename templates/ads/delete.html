@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  delete ad
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="display-1">Delete Advertisement</h1>
+    <p>Are you sure you want to delete this advertisement {{ad.name}}</p>
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Delete advertisement</button>
+        </div>
+    </form>
+{% endblock %}
