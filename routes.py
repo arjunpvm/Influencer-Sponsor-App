@@ -84,20 +84,16 @@ def spon_login_1():
     if not username or not password:
         flash('Please fill all the fields')
         return redirect(url_for('spon_login'))
-    
     sponsor = Sponsor.query.filter_by(username=username).first()
     if not sponsor:
         flash('Username not found')
         return redirect(url_for('spon_login'))
-    
     if not check_password_hash(sponsor.passhash, password):
         flash('Incorrect password!')
         return redirect(url_for('spon_login'))
-    
     session['sponsor_id'] = sponsor.id
     flash('Login successful')
     return redirect(url_for('spon_dash'))
-    
 # ---> End of login
 
 # ---> registration
@@ -122,13 +118,13 @@ def infl_reg():
     if password != confirm_password:
         flash('Passwords do not match')
         return redirect(url_for('inf_reg'))  
-    
+
     influencer = Influencer.query.filter_by(username = username).first()
     if influencer:
         flash('username already exists')
         return redirect(url_for('inf_reg'))
-    
     password_hash = generate_password_hash(password)
+
 
     new_influencer = Influencer(name=name, email=email, username=username, passhash=password_hash, followers=followers, niche=niche)
     db.session.add(new_influencer)

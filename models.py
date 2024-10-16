@@ -52,7 +52,7 @@ class Ads(db.Model):
     completed = db.Column(db.Boolean)
     paid = db.Column(db.Boolean)
     request = db.Column(db.Boolean)
-    
+
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'), nullable = False)
     influencer_username = db.Column(db.String(32), db.ForeignKey('influencer.username'))
     sponsor_username = db.Column(db.String(32),db.ForeignKey('sponsor.username'))
